@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .bmi-value { font-weight: bold; }
+        .underweight { color: #3498db; }
+        .normal { color: #2ecc71; }
+        .overweight { color: #f39c12; }
+        .obese { color: #e74c3c; }
+
+        .progress {
+            background-color: #ecf0f1;
+            border-radius: 4px;
+            height: 30px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            background-color: #3498db;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .progress-bar.exercise {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>🌿 Health Dashboard for {{ name }}</h1>
+        <p>Age: {{ age }}</p>
+
+        <!-- ✅ BMI category is passed from Flask as a class -->
+        <p class="bmi-value {{ category|lower }}">
+            BMI: {{ bmi }} ({{ category }})
+        </p>
+
+        <h3>💧 Water Intake</h3>
+        <div class="progress">
+            <div class="progress-bar" style="width: {{ water * 10 }}%;">
+                {{ water }} L
+            </div>
+        </div>
+
+        <h3>🏃 Exercise</h3>
+        <div class="progress">
+            <div class="progress-bar exercise" style="width: {{ exercise }}%;">
+                {{ exercise }} min
+            </div>
+        </div>
+
+        <p class="tip">✨ Tip: {{ tip }}</p>
+    </div>
+</body>
+</html>

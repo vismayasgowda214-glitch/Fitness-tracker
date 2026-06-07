@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🌿 Personal Health Tracker</h1>
+        <form action="/report" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="number" step="any" name="age" placeholder="Age" required>
+            <input type="number" step="any" name="height" placeholder="Height (cm)" required>
+            <input type="number" step="any" name="weight" placeholder="weight (kg)" required>
+            <input type="number" step="any" name="water" placeholder="Water Intake (liters)">
+            <input type="number" step="any" name="exercise" placeholder="Exercise (minutes)">
+            <button type="submit">Generate Report</button>
+        </form>
+    </div>
+</body>
+</html>

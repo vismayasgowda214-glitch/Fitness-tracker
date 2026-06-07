@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>🌿 Health Dashboard for {{ name }}</h1>
+        <p>Age: {{ age }}</p>
+        <p>BMI: {{ bmi }} ({{ category }})</p>
+        <p>💧 Water Intake: {{ water }} liters</p>
+        <p>🏃 Exercise: {{ exercise }} minutes</p>
+        <p class="tip">✨ Tip: {{ tip }}</p>
+
+        <canvas id="progressChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        const progressChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['BMI', 'Water Intake', 'Exercise'],
+                datasets: [{
+                    label: 'Your Health Stats',
+                    data: {{ [bmi, water, exercise]|tojson }}
+                    backgroundColor: ['#4CAF50', '#2196F3', '#FF9800']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
