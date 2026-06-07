@@ -25,7 +25,7 @@ def report():
     try:
         water = float(request.form.get("water", 0))
     except (TypeError, ValueError):
-        water = 0 add .
+        water = 0 
 
     try:
         exercise = float(request.form.get("exercise", 0))
